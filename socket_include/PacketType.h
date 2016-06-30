@@ -1,0 +1,17 @@
+#pragma once
+
+#define MAX_PACKET_SIZE 32*1024
+
+enum EM_MSG
+{
+	MSG_INVALID,
+	MSG_CONNECT,
+	MSG_CONNECTED,
+	MSG_AUTH,
+	MSG_AUTHED,
+	MSG_INFO,
+	MSG_INFO_RET,
+	MSG_USER,
+
+	MSG_END,
+};

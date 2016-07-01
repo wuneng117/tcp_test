@@ -79,22 +79,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\socket_include\BasePacket.h" />
-    <ClInclude Include="..\..\socket_include\BaseSocket.h" />
-    <ClInclude Include="..\..\socket_include\BitStream.h" />
+    <ClInclude Include="..\..\socket_include\base\BasePacket.h" />
+    <ClInclude Include="..\..\socket_include\base\BaseSocket.h" />
     <ClInclude Include="..\..\socket_include\Commonpacket.h" />
     <ClInclude Include="..\..\socket_include\PacketType.h" />
-    <ClInclude Include="..\..\socket_include\singleton.h" />
+    <ClInclude Include="..\..\socket_include\support\BitStream.h" />
+    <ClInclude Include="..\..\socket_include\support\singleton.h" />
     <ClInclude Include="..\..\socket_include\TcpSocket.h" />
     <ClInclude Include="CommonServer.h" />
     <ClInclude Include="ServerSocket.h" />
     <ClInclude Include="ServerSocketClient.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\socket_include\BasePacket.cpp" />
-    <ClCompile Include="..\..\socket_include\BaseSocket.cpp" />
-    <ClCompile Include="..\..\socket_include\BitStream.cpp" />
+    <ClCompile Include="..\..\socket_include\base\BasePacket.cpp" />
+    <ClCompile Include="..\..\socket_include\base\BaseSocket.cpp" />
     <ClCompile Include="..\..\socket_include\Commonpacket.cpp" />
+    <ClCompile Include="..\..\socket_include\support\BitStream.cpp" />
     <ClCompile Include="..\..\socket_include\TcpSocket.cpp" />
     <ClCompile Include="CommonServer.cpp" />
     <ClCompile Include="main.cpp" />

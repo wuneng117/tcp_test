@@ -18,8 +18,8 @@ $RECYCLE.BIN/
 *.lnk
 
 #VS temp
-/client/client/Debug/*
-*.pdb
+#/client/client/Debug/*
+#*.pdb
 
 # =========================
 # Operating System Files

@@ -1,3 +1,9 @@
+//created by xiaoshi 6/30/2016
+//------------------------------------------------
+//ServerSocketClient:
+//继承TcpSocket，服务端处理客户端连接的类
+//-----------------------------------------------
+
 #pragma once
 
 #include "TcpSocket.h"
@@ -10,6 +16,7 @@ class ServerSocketClient:public TcpSocket
 {
 public:
 
+	//客户端连接状态
 	enum SERVER_STATE_FLAGS
 	{
 		SSF_RESTARTING,
@@ -21,6 +28,7 @@ public:
 		SSF_SHUT_DOWN,     //已经关闭
 	};
 
+	//客户端类型
 	enum SERVER_TYPE
 	{
 		CLIENT_CONNECT,
@@ -36,6 +44,7 @@ private:
 	int m_state;				//客户端状态
 	ServerSocket* m_pServer;	
 
+	//暂未用到
 	int	m_PendSendTimes;
 	int	m_PendingSendBytes;
 
@@ -45,18 +54,18 @@ private:
 	OVERLAPPED_PLUS* m_accpetOv;	//accept时接收的ov
 public:
 	ServerSocketClient();
-	~ServerSocketClient();
+	virtual ~ServerSocketClient();
 	
 	void init(HANDLE completionPort,SOCKET listenSocket, ServerSocket* pServer);
-	void start();
+	void start();	//启动客户端连接
 	void resetVar();
 	void bindPacket(BasePacket* packet){ m_packet = packet; }
 
-	void setConnectType(int type) {m_connectType = type;}
-	int  getConnectType() {return m_connectType;}
-	int  getState() {return m_state;}
+	void setConnectType(int type)	{m_connectType = type;}
+	int  getConnectType()			{return m_connectType;}
+	int  getState()					{return m_state;}
 
-	void postEvent(int msg, OVERLAPPED_PLUS* data);
+	void postEvent(int msg, OVERLAPPED_PLUS* data);	//投递一个自定义操作
 
 	bool handleConnect(OVERLAPPED_PLUS* ov, int byteReceived);
 	bool handleReceive(OVERLAPPED_PLUS* ov, int byteReceived);

@@ -1,13 +1,20 @@
-﻿生成启动时间为 2016/6/29 11:18:08。
+﻿生成启动时间为 2016/7/6 14:48:22。
      1>项目“G:\tcp_test\server\server\server.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\socket_include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ServerSocket.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\socket_include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\socket_include\CommonPacket.cpp ..\..\socket_include\TcpSocket.cpp CommonServer.cpp ServerSocket.cpp ServerSocketClient.cpp
+         ServerSocketClient.cpp
+         TcpSocket.cpp
+     1>g:\tcp_test\socket_include\tcpsocket.cpp(65): warning C4018: “<”: 有符号/无符号不匹配
+         正在生成代码...
+         正在跳过...(未检测到相关更改)
          ServerSocket.cpp
+         CommonServer.cpp
+         CommonPacket.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\tcp_test\server\Debug\server.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\tcp_test\server\Debug\server.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\tcp_test\server\Debug\server.lib" /MACHINE:X86 Debug\BasePacket.obj
          Debug\BaseSocket.obj
+         Debug\CommonPacket.obj
          Debug\BitStream.obj
-         Debug\Commonpacket.obj
          Debug\TcpSocket.obj
          Debug\CommonServer.obj
          Debug\main.obj
@@ -18,4 +25,4 @@
 
 生成成功。
 
-已用时间 00:00:00.88
+已用时间 00:00:01.37

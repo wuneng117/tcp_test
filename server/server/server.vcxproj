@@ -81,7 +81,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\socket_include\base\BasePacket.h" />
     <ClInclude Include="..\..\socket_include\base\BaseSocket.h" />
-    <ClInclude Include="..\..\socket_include\Commonpacket.h" />
+    <ClInclude Include="..\..\socket_include\CommonPacket.h" />
     <ClInclude Include="..\..\socket_include\PacketType.h" />
     <ClInclude Include="..\..\socket_include\support\BitStream.h" />
     <ClInclude Include="..\..\socket_include\support\singleton.h" />
@@ -93,7 +93,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\socket_include\base\BasePacket.cpp" />
     <ClCompile Include="..\..\socket_include\base\BaseSocket.cpp" />
-    <ClCompile Include="..\..\socket_include\Commonpacket.cpp" />
+    <ClCompile Include="..\..\socket_include\CommonPacket.cpp" />
     <ClCompile Include="..\..\socket_include\support\BitStream.cpp" />
     <ClCompile Include="..\..\socket_include\TcpSocket.cpp" />
     <ClCompile Include="CommonServer.cpp" />

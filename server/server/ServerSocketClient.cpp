@@ -1,9 +1,9 @@
 #include <assert.h>
 
 #include "ServerSocketClient.h"
-#include "BitStream.h"
+#include "support/BitStream.h"
 #include "ServerSocket.h"
-#include "BasePacket.h"
+#include "base/BasePacket.h"
 
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "Mswsock.lib")
@@ -129,7 +129,7 @@ bool ServerSocketClient::handleConnect(OVERLAPPED_PLUS* ov, int byteReceived)
 
 	if(!CreateIoCompletionPort((HANDLE)m_socket, m_completionPort, (ULONG_PTR)ServerSocket::OP_NORMAL, 0))
 	{
-		printWSAError("handleConnect() failed");
+		Net::printWSAError("handleConnect() failed");
 		postEvent(ServerSocket::OP_RESTART, ov);
 		return false;
 	}
@@ -146,13 +146,13 @@ bool ServerSocketClient::handleConnect(OVERLAPPED_PLUS* ov, int byteReceived)
 	BOOL val = true;
 	if(setsockopt(m_socket,SOL_SOCKET,SO_REUSEADDR,(const char *)&val,sizeof(BOOL))==SOCKET_ERROR )
 	{
-		printWSAError("set SO_REUSEADDR failed");
+		Net::printWSAError("set SO_REUSEADDR failed");
 	}
 
 	val = 1; //m_pServer->GetNagle() ? 0 : 1;  //Ray: 这里很容易写反
 	if(setsockopt(m_socket,IPPROTO_TCP,TCP_NODELAY,(const char *)&val,sizeof(BOOL))==SOCKET_ERROR )
 	{
-		printWSAError("set TCP_NODELAY failed");
+		Net::printWSAError("set TCP_NODELAY failed");
 	}
 
 	handleReceive(ov, byteReceived);

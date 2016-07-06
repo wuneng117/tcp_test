@@ -3,7 +3,7 @@
 #include <string>
 
 #include "CommonServer.h"
-#include "BaseSocket.h"
+#include "Base/BaseSocket.h"
 #include "PacketType.h"
 
 int _tmain(int argc, _TCHAR* argv[])

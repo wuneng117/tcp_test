@@ -4,12 +4,14 @@
 #include <process.h>
 
 #include "ClientSocket.h"
-#include "BitStream.h"
-#include "BasePacket.h"
+#include "PacketType.h"
+#include "support/BitStream.h"
+#include "base/BasePacket.h"
 
 unsigned int WINAPI CreateThread(LPVOID param)
 {
 	ClientSocket* pClientSock = new ClientSocket;
+	pClientSock->setMaxPacketSize(MAX_PACKET_SIZE);
 	pClientSock->openConnectTo("192.168.1.41", 5008);
 
 	while (1)

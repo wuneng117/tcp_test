@@ -16,11 +16,11 @@
     <Filter Include="socket_include">
       <UniqueIdentifier>{78642aeb-4ded-48e7-bcc9-e2394e9a7a0f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="socket_include\Base">
-      <UniqueIdentifier>{f2362d62-717f-4ae4-a51b-fbf38087c6a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="socket_include\suppost">
+    <Filter Include="socket_include\support">
       <UniqueIdentifier>{3cecd729-4328-4924-8289-f22d88d0d38c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="socket_include\base">
+      <UniqueIdentifier>{f2362d62-717f-4ae4-a51b-fbf38087c6a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,20 +39,20 @@
     <ClInclude Include="CommonServer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\socket_include\Commonpacket.h">
-      <Filter>socket_include</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\socket_include\base\BasePacket.h">
-      <Filter>socket_include\Base</Filter>
+      <Filter>socket_include\base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\socket_include\base\BaseSocket.h">
-      <Filter>socket_include\Base</Filter>
+      <Filter>socket_include\base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\socket_include\support\BitStream.h">
-      <Filter>socket_include\suppost</Filter>
+      <Filter>socket_include\support</Filter>
     </ClInclude>
     <ClInclude Include="..\..\socket_include\support\singleton.h">
-      <Filter>socket_include\suppost</Filter>
+      <Filter>socket_include\support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\socket_include\CommonPacket.h">
+      <Filter>socket_include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -71,17 +71,17 @@
     <ClCompile Include="CommonServer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\socket_include\Commonpacket.cpp">
-      <Filter>socket_include</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\socket_include\base\BasePacket.cpp">
-      <Filter>socket_include\Base</Filter>
+      <Filter>socket_include\base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\socket_include\base\BaseSocket.cpp">
-      <Filter>socket_include\Base</Filter>
+      <Filter>socket_include\base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\socket_include\support\BitStream.cpp">
-      <Filter>socket_include\suppost</Filter>
+      <Filter>socket_include\support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\socket_include\CommonPacket.cpp">
+      <Filter>socket_include</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

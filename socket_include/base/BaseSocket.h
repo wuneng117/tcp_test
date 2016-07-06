@@ -57,16 +57,55 @@ public:
 
 namespace Net
 {
-	static void init();			//TCP初始化
-	static void shutdown();		//TCP结束
-	static int openSocket();	//返回初始化过的TCP用SOCKET
-	static int setBlocking(int socket, bool blockingIO);	//设置SOCKET是否阻塞处理
+	//TCP初始化
+	static void init()
+	{
+		WSADATA wsaData;
+		const WORD wVersionRequested = MAKEWORD(2, 2);
+		int wsa_startup_err = WSAStartup(wVersionRequested, &wsaData);
+		assert(wsa_startup_err == 0);
+	}
+
+	//TCP结束
+	static void shutdown()
+	{
+		WSACleanup();
+	}
+
+	//返回初始化过的TCP用SOCKET
+	static int openSocket()
+	{
+		int nSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+		if (nSocket < 0)
+		{
+			printf("socket() failed:%d\n", WSAGetLastError());
+			return InvalidSocket;
+		}
+
+		return nSocket;
+	}
+
+	//设置SOCKET是否阻塞处理
+	static int setBlocking(int socket, bool blockingIO)
+	{
+		unsigned long notblock = !blockingIO;
+		int ret = ioctlsocket(socket, FIONBIO, &notblock);
+		if (ret != 0)
+		{
+			int error = WSAGetLastError();
+			printf("ioctlsocket() failed:%d\n", error);
+			return error;
+		}
+
+		return 0;
+	}
 	
 	//输出WSA错误代码
 	static void printWSAError(const char* stError)
 	{
 		printf("%s(ErrorCode:%d)\n", stError, WSAGetLastError());
 	}
+
 	//输出WINDOWS错误代码
 	static void printLastError(const char* stError)
 	{

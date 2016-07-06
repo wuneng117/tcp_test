@@ -1,6 +1,13 @@
+//created by xiaoshi 6/26/2016
+//------------------------------------------------
+//Singleton:
+//生成二进制数据的类
+//-----------------------------------------------
+
 #include <cassert>
 
-template <typename T> class Singleton
+template <typename T> 
+class Singleton
 {
 	static T* ms_Singleton;
 

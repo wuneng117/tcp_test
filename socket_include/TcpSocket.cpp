@@ -1,5 +1,5 @@
 #include "TcpSocket.h"
-#include "BasePacket.h"
+#include "Base/BasePacket.h"
 
 TcpSocket::TcpSocket()
 {
@@ -11,13 +11,22 @@ TcpSocket::TcpSocket()
 
 TcpSocket::~TcpSocket()
 {
+	delete m_packetBuf;	//释放申请的空间
+}
 
+void  TcpSocket::addPacketBuf(const char* addBuf, int addSize)
+{
+	if (m_packetSize != 0)
+		assert(addSize <= m_packetSize - m_packetPos);
+
+	memcpy(m_packetBuf + m_packetPos, addBuf, addSize);
+	m_packetPos += addSize;
 }
 
 void TcpSocket::setMaxPacketSize(int maxSize)
 {
-	m_maxPacketSize = maxSize;
-	m_packetBuf = new char[maxSize];
+	Parent::setMaxPacketSize(maxSize);
+	m_packetBuf = new char[maxSize];	//为缓冲区申请内存空间
 }
 
 void TcpSocket::onReceive(char* pRecvBuf, int nRecvSize)
@@ -38,7 +47,7 @@ void TcpSocket::onReceive(char* pRecvBuf, int nRecvSize)
 		else
 		{
 			addPacketBuf(pRecvBuf,nLastSize);
-			//数据包处理，比如打印出来
+			//数据包处理
 			handlePacket(m_packetBuf, m_packetSize);
 
 			nRecvPos += nLastSize;
@@ -73,7 +82,7 @@ void TcpSocket::onReceive(char* pRecvBuf, int nRecvSize)
 				nRecvPos += m_packetSize;
 				nRecvSize -= m_packetSize;
 
-				//BitStream处理，比如打印出来
+				//BitStream处理
 				handlePacket(m_packetBuf, m_packetSize);
 			}
 			//BitStream未接收完全
@@ -88,24 +97,16 @@ void TcpSocket::onReceive(char* pRecvBuf, int nRecvSize)
 
 void TcpSocket::handlePacket(const char* pData, int dataSize)
 {
+	//重置记录的数据（不需要清空m_packetBuf，反正每次读取到的肯定是被覆盖过的）
 	m_packetPos = 0;
 	m_packetSize = 0;
 
 	if (m_packet->handlePacket(pData, dataSize))
 	{
-		m_nLastTransTickCount = GetTickCount();
+		m_nLastTransTickCount = GetTickCount();	//记录操作时间
 	}
 	else
 	{
 		m_packet->handleErrorPacket(pData, dataSize);
 	}
-}
-
-void  TcpSocket::addPacketBuf(const char* addBuf, int addSize)
-{
-	if(m_packetSize != -1)
-		assert(addSize <= m_packetSize-m_packetPos);
-
-	memcpy(m_packetBuf+m_packetPos, addBuf, addSize);
-	m_packetPos += addSize;
 }

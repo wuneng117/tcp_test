@@ -16,6 +16,12 @@
     <Filter Include="socket_include">
       <UniqueIdentifier>{cfbf65ae-a63d-4d21-af11-e8e7392ea503}</UniqueIdentifier>
     </Filter>
+    <Filter Include="socket_include\base">
+      <UniqueIdentifier>{ee47a456-c33e-4700-a028-af6a21b2aced}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="socket_include\support">
+      <UniqueIdentifier>{ae53aa9f-cfab-401c-8c2f-f54e947ef0eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientSocket.cpp">
@@ -24,37 +30,25 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\socket_include\BasePacket.cpp">
-      <Filter>socket_include</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\socket_include\BaseSocket.cpp">
-      <Filter>socket_include</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\socket_include\BitStream.cpp">
-      <Filter>socket_include</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\socket_include\TcpSocket.cpp">
       <Filter>socket_include</Filter>
     </ClCompile>
     <ClCompile Include="..\..\socket_include\Commonpacket.cpp">
       <Filter>socket_include</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\socket_include\base\BasePacket.cpp">
+      <Filter>socket_include\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\socket_include\base\BaseSocket.cpp">
+      <Filter>socket_include\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\socket_include\support\BitStream.cpp">
+      <Filter>socket_include\support</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientSocket.h">
       <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\socket_include\BasePacket.h">
-      <Filter>socket_include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\socket_include\BaseSocket.h">
-      <Filter>socket_include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\socket_include\BitStream.h">
-      <Filter>socket_include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\socket_include\singleton.h">
-      <Filter>socket_include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\socket_include\TcpSocket.h">
       <Filter>socket_include</Filter>
@@ -64,6 +58,18 @@
     </ClInclude>
     <ClInclude Include="..\..\socket_include\Commonpacket.h">
       <Filter>socket_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\socket_include\base\BasePacket.h">
+      <Filter>socket_include\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\socket_include\base\BaseSocket.h">
+      <Filter>socket_include\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\socket_include\support\BitStream.h">
+      <Filter>socket_include\support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\socket_include\support\singleton.h">
+      <Filter>socket_include\support</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

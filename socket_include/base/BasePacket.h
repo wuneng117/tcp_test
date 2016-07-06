@@ -9,7 +9,7 @@
 //-----------------------------------------------
 
 #pragma once
-#include "../support/BitStream.h"
+#include "support/BitStream.h"
 
 #define STX                             0x36        //包文起始标识
 #define CKX                             0x63        //包文校验标识

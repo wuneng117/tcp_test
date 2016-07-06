@@ -1,12 +1,20 @@
+//created by xiaoshi 6/30/2016
+//------------------------------------------------
+//ClientSocket:
+//继承TcpSocket,客户端连接服务器处理类，用非阻塞方
+//式接受和发送数据包
+//-----------------------------------------------
+
+
 #pragma once
-#include "singleton.h"
-#include "TcpSocket.h"
 #include <stdio.h>
 
-const int MAX_PACKET_SIZE = 32 * 1024;
+#include "TcpSocket.h"
 
 class ClientSocket:public TcpSocket
 {
+	typedef TcpSocket Parent;
+
 public:
 	enum SocketState
 	{
@@ -18,19 +26,18 @@ public:
 private:
 	sockaddr_in m_clientSockAddr;
 	char* m_recvBuf;	//接收缓存区
+
 public:
-	int m_socketState;
+	int m_socketState;	//连接状态
 	ClientSocket();
 	~ClientSocket();
-
-	int openConnectTo(const char* ip, unsigned short port);
-
 	void bindPacket(BasePacket* packet){ m_packet = packet; }
+	virtual void setMaxPacketSize(int maxSize);
 
-	void handleReceive();
-	virtual void send(const char* pData, int dataSize);
+	int openConnectTo(const char* ip, unsigned short port);	//开启连接
 
-	virtual void handlePacket();
+	void handleReceive();	//接受数据
+	virtual void send(const char* pData, int dataSize);	//发送数据
 
 	void process();
 };

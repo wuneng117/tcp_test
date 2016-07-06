@@ -3,7 +3,6 @@
 
 #include "ServerSocket.h"
 #include "ServerSocketClient.h"
-#include "BasePacket.h"
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -30,7 +29,7 @@ bool ServerSocket::start(unsigned short port, int max_connect_requests)
 	m_socket = WSASocket(PF_INET, SOCK_STREAM, 0, NULL, NULL, WSA_FLAG_OVERLAPPED);
 	if(m_socket ==INVALID_SOCKET)
 	{
-		printWSAError("socket() failed");
+		Net::printWSAError("socket() failed");
 		return false;
 	}
 
@@ -45,7 +44,7 @@ bool ServerSocket::start(unsigned short port, int max_connect_requests)
 
 	if(bind(m_socket, (sockaddr*)&listenSockAddr, sizeof(listenSockAddr)) == SOCKET_ERROR)
 	{
-		printWSAError("bind() failed");
+		Net::printWSAError("bind() failed");
 		closesocket(m_socket);
 		return false;
 	}
@@ -56,7 +55,7 @@ bool ServerSocket::start(unsigned short port, int max_connect_requests)
 	m_maxClients = max_connect_requests;
 	if(listen(m_socket, m_maxClients) == SOCKET_ERROR)
 	{
-		printWSAError("listen() failed");
+		Net::printWSAError("listen() failed");
 		closesocket(m_socket);
 		return false;
 	}
@@ -73,7 +72,7 @@ bool ServerSocket::start(unsigned short port, int max_connect_requests)
 	//bind the IOCP with socket
 	if(!CreateIoCompletionPort((HANDLE)m_socket,m_completionPort,0, 0))
 	{
-		printWSAError("CreateIoCompletionPort() failed");
+		Net::printWSAError("CreateIoCompletionPort() failed");
 		CloseHandle(m_completionPort);
 		closesocket(m_socket);
 		return false;
@@ -189,7 +188,7 @@ unsigned int ServerSocket::IOCPRecvThread(LPVOID lpParam)
 		//出错处理
 		if(bRet == FALSE)
 		{
-			printWSAError("GetQueuedCompletionStatus() failed");
+			Net::printWSAError("GetQueuedCompletionStatus() failed");
 			printf("clientId(%d)\n", ov->ClientId);
 			//pClient->onNetFail(  出错处理
 			continue;
@@ -224,7 +223,7 @@ unsigned int ServerSocket::IOCPRecvThread(LPVOID lpParam)
 		{
 			if (dwByteCountBak == 0)
 			{
-				printWSAError("dwByteCountBak == 0, is error");
+				Net::printWSAError("dwByteCountBak == 0, is error");
 				//pClient->onNetFail(  出错处理
 				continue;
 			}

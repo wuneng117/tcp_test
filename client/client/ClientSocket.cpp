@@ -1,26 +1,26 @@
 #include <process.h>
 
 #include "ClientSocket.h"
-#include "BitStream.h"
-#include "BasePacket.h"
 #include "PacketType.h"
 #include "CommonPacket.h"
 
 #pragma comment(lib, "ws2_32.lib")
 
-//thread for receiving data from client
-
 
 ClientSocket::ClientSocket()
 {
 	m_socketState = InvalidState;
-	setMaxPacketSize(MAX_PACKET_SIZE);
-	m_recvBuf = new char[m_maxPacketSize];
 }
 
 ClientSocket::~ClientSocket()
 {
 	closesocket(m_socket);
+}
+
+void ClientSocket::setMaxPacketSize(int maxSize)
+{
+	Parent::setMaxPacketSize(maxSize);
+	m_recvBuf = new char[MAX_PACKET_SIZE];
 }
 
 int ClientSocket::openConnectTo(const char* ip, unsigned short port)
@@ -60,10 +60,10 @@ int ClientSocket::openConnectTo(const char* ip, unsigned short port)
 
 void ClientSocket::handleReceive()
 {
-	memset(m_packetBuf, 0, m_maxPacketSize);
+	memset(m_recvBuf, 0, m_maxPacketSize);
 	int ret = 0;
 
-	ret = recv(m_socket, m_packetBuf, m_maxPacketSize, 0);
+	ret = recv(m_socket, m_recvBuf, m_maxPacketSize, 0);
 	if(ret< 0)
 	{
 		if (WSAGetLastError() == WSAEWOULDBLOCK)
@@ -78,8 +78,8 @@ void ClientSocket::handleReceive()
 	if(ret == 0)
 		return;
 
-	//把数据写入缓存里
-	onReceive(m_packetBuf, ret);
+	//处理数据包
+	onReceive(m_recvBuf, ret);
 }
 
 void ClientSocket::send(const char* pData, int dataSize)
@@ -114,15 +114,6 @@ void ClientSocket::send(const char* pData, int dataSize)
 		nLeft -= ret;
 		sendPos += ret;
 	}
-}
-
-void ClientSocket::handlePacket()
-{
-
-	//用完清除
-	memset(m_packetBuf, 0, m_maxPacketSize);
-	m_packetSize = 0;
-	m_packetPos = 0;
 }
 
 void ClientSocket::process()
@@ -171,16 +162,13 @@ void ClientSocket::process()
 					printf("connected!\n");
 					m_socketState = Connected;
 
-					//连接上的操作
+					//连上服务器后发条连接消息
 					char buffer[64];
 					BitStream stream(buffer, 64);
 					SendPacketHead* pHead = BasePacket::buildPacketHead(stream, MSG_CONNECT);
 
 					send(stream.getBuffer(), stream.getSize());
 				}
-
-
-
 			}
 			else
 			{

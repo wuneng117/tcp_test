@@ -17,6 +17,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#VS temp
+*.[tlog]
 # =========================
 # Operating System Files
 # =========================

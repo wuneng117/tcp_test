@@ -19,7 +19,7 @@ $RECYCLE.BIN/
 
 #VS temp
 /client/client/Debug/*
-
+*.pdb
 # =========================
 # Operating System Files
 # =========================

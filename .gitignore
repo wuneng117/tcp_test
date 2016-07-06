@@ -18,7 +18,8 @@ $RECYCLE.BIN/
 *.lnk
 
 #VS temp
-*.[tlog]
+/client/client/Debug
+
 # =========================
 # Operating System Files
 # =========================
